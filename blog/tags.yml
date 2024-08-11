@@ -1,4 +1,8 @@
 docusaurus:
   label: Docusaurus
   permalink: /docusaurus
-  description: Docusaurus tag description
+  description: Docusaurus
+tailwindcss:
+  label: Tailwind CSS
+  permalink: /tailwindcss
+  description: Tailwind CSS

@@ -44,11 +44,12 @@ import { ChatOpenAI } from "@langchain/openai";
 ```
 
 `new ChatOpenAI()` で`ChatOpenAI`クラスのインスタンスを作成します。  
-そして、`model`プロパティに"gpt-4o-mini"を指定することで、GPT-4o miniモデルを使用することを明示しています。  
-また、`apiKey`プロパティに定数`apiKey`を渡します。
+また、`apiKey`プロパティに定数`apiKey`を渡します。  
+そして、`model`プロパティに`"gpt-4o-mini"`を指定します。  
+ここでは、GPT-4o miniモデルを使用します。
 
 ```ts title="index.ts"
-const model = new ChatOpenAI({ model: "gpt-4o-mini", apiKey: apiKey });
+const model = new ChatOpenAI({ apiKey: apiKey, model: "gpt-4o-mini" });
 ```
 
 ## ここまでのコード

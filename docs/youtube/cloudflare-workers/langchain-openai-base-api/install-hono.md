@@ -6,7 +6,7 @@ draft: true
 
 ## Honoをインストール
 
-Honoをインストールするには、以下のコマンドを使用します。
+Honoをインストールするには、以下のコマンドを実行します。
 
 ```sh
 bun add hono
@@ -31,62 +31,77 @@ app.post("/", async (c) => {
 export default app;
 ```
 
-動作しましたが、このままではどんなJSONも受け取るようになっています。  
+適当にJSONを送信してみましょう。
+
+```json
+{
+  "aaa": "aaa"
+}
+```
+
+送信したJSONが出力されました。  
+JSONを変更して、もう1度送信してみましょう。
+
+```json
+{
+  "bbb": "bbbb"
+}
+```
+
+また、送信したJSONが出力されました。  
+ただ、このままではどんなJSONも受け取るようになっています。  
 これを、決まったJSONを受け取るようにします。  
 それには、zodを使用して、バリデーションスキーマを作成します。
 
-03
-ターミナルを開いて、簡易サーバーを立ち上げます。
-サンダークライアントを開いて、動作を確認します。
-new requestから、新たに開いて、URLのところに、ターミナルに表示されているURLをコピペします。
-getをpostに変更して、bodyタグからJSONを選択して、適当にJSONを入力します。
-実行すると、そのまま出力されます。
-入力したJSONを変更して、実行すると、そのまま出力されます。
-ただ、このままではどんなJSONも受け取るようになっています。
-これを、決まったJSONを受け取るようにします。
-それには、zodを使用して、バリデーションスキーマを作成します。
-
-04
-ターミナルを新たに開きます。
-
-05
 ## zodを使用したバリデーション
 
 Honoには、zodを利用するためのミドルウェアが用意されています。  
-以下のコマンドを使用します。
+ターミナルで、以下のコマンドを実行します。  
+すると、zValidatorがインストールされます。
 
 ```sh
 bun add @hono/zod-validator
 ```
 
-06
+次に、zValidatorを使うためにコードを変更します。  
+ハイライトしているコードが変更箇所です。
 
 ```ts title="src/index.ts" {1,3,7-9,11,12}
-import { zValidator } from "@hono/zod-validator";
+import { zValidator } from "@hono/zod-validator";         // 追加
 import { Hono } from "hono";
-import { z } from "zod";
+import { z } from "zod";                                  // 追加
 
 const app = new Hono();
 
 const schema = z.object({
   prompt: z.string(),
 });
-// 07
-app.post("/", zValidator("json", schema), async (c) => { // 変更
-  // 08
-  const body = await c.req.valid("json");                // 変更
+
+app.post("/", zValidator("json", schema), async (c) => {  // 変更
+  const body = await c.req.valid("json");                 // 変更
   return c.json(body);
 });
 
 export default app;
 ```
 
-09
-サンダークライアントを開いて、動作を確認します。
-実行すると、今度はエラーが発生します。
-そこで、スキーマで設定したpromptに変更します。
-もう1度実行すると、次は表示されました。
-バリデーションが効いています。
+## バリデーションの動作確認
 
-これで、スキーマで設定したバリデーションが効いています。
-また、型`Prompt`を定義して、受け取るjson形式を指定します。
+JSONをそのまま、送信してみましょう。
+
+```json
+{
+  "bbb": "bbbb"
+}
+```
+
+今度は、エラーが発生しました。  
+そこで、bbbをスキーマで設定したpromptに変更します。
+
+```json
+{
+  "prompt": "bbbb"
+}
+```
+
+もう1度実行すると、次は表示されました。

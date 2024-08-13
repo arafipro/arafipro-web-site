@@ -9,7 +9,7 @@ draft: true
 
 **チェーンの実行の例**
 
-この例では、`language`と`text`を含むJavaScriptオブジェクトを引数として `.invoke()`メソッドを使用しています。
+この例では、`language`と`text`を含むJavaScriptオブジェクトを引数として `invoke()`メソッドを使用しています。
 
 ```javascript
 await chain.invoke({ language: "italian", text: "hi" });

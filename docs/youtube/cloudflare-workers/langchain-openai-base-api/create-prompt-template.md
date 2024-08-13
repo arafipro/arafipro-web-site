@@ -23,10 +23,19 @@ const systemTemplate = "次の文章を英語から{language}に翻訳してく�
 ```
 
 次に、`systemTemplate`とテキストの配置場所を指定するより単純なテンプレートを組み合わせて、PromptTemplateを作成します。
+まずは、`@langchain/core/prompts`から`ChatPromptTemplate`をインポートします。
 
 ```ts
 import { ChatPromptTemplate } from "@langchain/core/prompts";
+```
 
+次に、定数`promptTemplate`を用意します。
+`ChatPromptTemplate`から`fromMessages`メソッドを呼び出します。
+`fromMessages`メソッドの引数には、配列の中に2つの配列を用意します。
+1つ目には、キーを`system`で、値を`systemTemplate`とします。
+2つ目には、キーを`user`で、値を`{text}`とします。
+
+```ts
 const promptTemplate = ChatPromptTemplate.fromMessages([
   ["system", systemTemplate],
   ["user", "{text}"],
@@ -35,8 +44,9 @@ const promptTemplate = ChatPromptTemplate.fromMessages([
 
 ## PromptTemplateの使用
 
-このプロンプトテンプレートへの入力は辞書です。  
-プロンプトテンプレート単独でどのような動作をするのかを確認するために、以下のように試すことができます。
+定数`promptTemplate`から、`invoke`メソッドを呼び出します。
+`invoke`メソッドの引数には、`language`プロパティと`text`プロパティのオブジェクトを渡します。  
+`promptTemplate`単独でどのような動作をするのかを確認するために、以下のように試すことができます。
 
 ```ts
 const res = await promptTemplate.invoke({ language: "japanese", text: "hi" });

@@ -19,7 +19,9 @@ import { HumanMessage, SystemMessage } from "@langchain/core/messages";
 そして、`model`から`invoke`メソッドを呼び出して、`messages`を渡します。  
 そうすることで、モデルに対して翻訳の指示と翻訳対象のテキストを送信しています。   
 この`invoke`メソッドの戻り値は、`AIMessage`オブジェクトとなります。  
-これには、文字列の応答と応答に関するその他のメタデータが含まれます。
+これには、文字列の応答と応答に関するその他のメタデータが含まれます。  
+また、出力された結果を定数`res`に格納します。  
+最後に、`json`メソッドに定数`res`を渡して、結果をJSON形式で返します。
 
 ```ts
 const messages = [

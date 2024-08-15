@@ -1,24 +1,28 @@
 import type * as Preset from "@docusaurus/preset-classic";
 import type { Config } from "@docusaurus/types";
 import { themes as prismThemes } from "prism-react-renderer";
-import tailwindPlugin from "./plugins/tailwind-plugin";
+import tailwindPlugin from "./plugins/tailwind-plugin.js";
+
+const USERNAME = "arafipro";
+const SITE_TITLE = "TypeScriptでフルスタックエンジニアになる";
+const GITHUB_EDIT_URL = `https://github.com/${USERNAME}/docusaurus-website-test/blob/main/`;
 
 const config: Config = {
   plugins: [tailwindPlugin],
-  title: "My Site",
-  tagline: "Dinosaurs are cool",
+  title: SITE_TITLE,
+  // tagline: "Dinosaurs are cool",
   favicon: "img/favicon.ico",
 
   // Set the production url of your site here
-  url: "https://your-docusaurus-site.example.com",
+  url: "https://docusaurus-website-test.pages.dev",
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: "/",
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: "facebook", // Usually your GitHub org/user name.
-  projectName: "docusaurus", // Usually your repo name.
+  organizationName: USERNAME, // Usually your GitHub org/user name.
+  projectName: "arafipro-web-site", // Usually your repo name.
 
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
@@ -30,7 +34,6 @@ const config: Config = {
     defaultLocale: "ja",
     locales: ["ja"],
   },
-
   presets: [
     [
       "classic",
@@ -39,15 +42,13 @@ const config: Config = {
           sidebarPath: "./sidebars.ts",
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl:
-            "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
+          editUrl: GITHUB_EDIT_URL,
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl:
-            "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
+          editUrl: GITHUB_EDIT_URL,
         },
         theme: {
           customCss: ["./src/css/custom.css", "./src/css/tailwind.css"],
@@ -55,12 +56,11 @@ const config: Config = {
       } satisfies Preset.Options,
     ],
   ],
-
   themeConfig: {
     // Replace with your project's social card
     image: "img/docusaurus-social-card.jpg",
     navbar: {
-      title: "My Site",
+      title: SITE_TITLE,
       logo: {
         alt: "My Site Logo",
         src: "img/logo.svg",
@@ -70,11 +70,11 @@ const config: Config = {
           type: "docSidebar",
           sidebarId: "tutorialSidebar",
           position: "left",
-          label: "YouTube",
+          label: "Tutorial",
         },
         { to: "/blog", label: "Blog", position: "left" },
         {
-          href: "https://github.com/facebook/docusaurus",
+          href: `https://github.com/${USERNAME}`,
           label: "GitHub",
           position: "right",
         },
@@ -88,24 +88,20 @@ const config: Config = {
           items: [
             {
               label: "Tutorial",
-              to: "/docs/intro",
+              to: "/docs/tutorial/intro",
             },
           ],
         },
         {
-          title: "Community",
+          title: "SNS",
           items: [
             {
-              label: "Stack Overflow",
-              href: "https://stackoverflow.com/questions/tagged/docusaurus",
+              label: "YouTube",
+              href: `https://www.youtube.com/@${USERNAME}`,
             },
             {
-              label: "Discord",
-              href: "https://discordapp.com/invite/docusaurus",
-            },
-            {
-              label: "Twitter",
-              href: "https://twitter.com/docusaurus",
+              label: "X(Twitter)",
+              href: `https://twitter.com/${USERNAME}`,
             },
           ],
         },
@@ -117,8 +113,12 @@ const config: Config = {
               to: "/blog",
             },
             {
+              label: "Zenn",
+              href: `https://zenn.dev/${USERNAME}`,
+            },
+            {
               label: "GitHub",
-              href: "https://github.com/facebook/docusaurus",
+              href: `https://github.com/${USERNAME}`,
             },
           ],
         },

@@ -12,6 +12,12 @@ LangChainをインストールするには、以下のコマンドを実行し�
 bun add langchain
 ```
 
+また、LangChainのcoreパッケージもインストールします。
+
+```sh
+bun add @langchain/core
+```
+
 ## OpenAI API
 
 LangChainが提供するOpenAI APIに対応したパッケージをインストールする必要があります。  

@@ -27,10 +27,10 @@ const chain = promptTemplate.pipe(model).pipe(parser);
 この例では、`language`と`text`を含むJavaScriptオブジェクトを引数として `invoke()`メソッドを使用しています。
 
 ```javascript
-await chain.invoke({ language: "italian", text: "hi" });
+await chain.invoke({ language: "日本語", text: "hi" });
 ```
 
-これにより、"ciao"が出力されます。
+これにより、"こんにちは"が出力されます。
 
 
 この `invoke`メソッドは、チェーン内の最初のコンポーネント（この場合はプロンプトテンプレート）を呼び出し、その出力をチェーン内の次のコンポーネント（この場合は言語モデル）に渡し、最後に最後のコンポーネント（この場合は出力パーサー）の出力を返します。

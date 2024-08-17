@@ -7,7 +7,11 @@ const config = {
     container: false,
   },
   darkMode: ["class", '[data-theme="dark"]'],
-  content: ["./src/**/*.{jsx,tsx,html}"],
+  content: [
+    "./src/**/*.{tsx,html,md,mdx}",
+    "./blog/**/*.{md,mdx}",
+    "./docs/**/*.{md,mdx}",
+  ],
   theme: {
     extend: {
       fontFamily: {
